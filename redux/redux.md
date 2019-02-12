@@ -1,4 +1,4 @@
-### STORE
+### REDUX
 
 #### State Tree
 All of our states in one location instead of all over our app.
@@ -92,3 +92,33 @@ The `Object Spread Syntax` can replace this method and it is easier to read. It 
   }
 }
 ````
+
+### Multiple reducers
+Redux allows you to have multiple reducers to handle different data (i.e. one for user info and another for handling log in)
+
+The `combineReducers` from the redux library handles aggregation of all the reducers in the app. The aggregation is then passed to create the single redux store.
+
+I.e.: 
+````
+import { createStore, combineReducers } from 'redux';  
+// The User Reducer 
+const userReducer = function(state = {}, action) {   
+   return state 
+}  
+// The Login Reducer 
+const loginReducer = function(state = {}, action) {   
+   return state 
+}  
+// Combine Reducers 
+const reducers = combineReducers({   
+   userState: userReducer,   
+   loginState: loginReducer 
+})  
+const store = createStore(reducers)
+````
+
+
+Sources:
+[Redux](https://redux.js.org)
+[Adhithi Ravichandran on Codeburst](https://codeburst.io/redux-reducers-are-coffee-makers-8a78dd8bb7a0)
+[Tyler Mcginnis courses](https://learn.tylermcginnis.com/)
